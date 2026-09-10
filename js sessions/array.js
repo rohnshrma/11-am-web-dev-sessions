@@ -597,3 +597,103 @@ console.log(marks);
 
 marks.splice(1, 3);
 console.log(marks);
+
+// ============================================================
+// reduce  (today's class notes)
+// ============================================================
+console.log("===== reduce below =====");
+
+// reduce() is used when you want to take a WHOLE array and boil it
+// down to a SINGLE value: one total, one biggest number, one
+// joined string, one summary object, etc.
+//
+// You give reduce a function. That function receives two things
+// on every round:
+//
+//   1) the "running result" so far  (people name it acc / total / pv)
+//   2) the current item from the array  (cv = current value)
+//
+// Whatever you RETURN becomes the "running result" for the NEXT
+// round. When the array runs out, the last returned value is what
+// reduce hands back to you.
+
+
+// ---- case 1 : NO starting value given ---------------------
+
+// array we are working on: [888, 2, 4, 52, 43, 10000]
+//
+// If you do NOT pass a starting value, reduce is a little clever:
+//   - "total" starts as the FIRST item   -> 888  (arr[0])
+//   - "cv"    starts as the SECOND item  -> 2    (arr[1])
+// so it quietly skips one step of work.
+
+// goal: add up every number in the array
+var total = marks.reduce((total, cv) => {
+  // whats happening bts : total += cv   (total = total + cv)
+  // console.log(total, cv);   // uncomment to watch each round
+  return total + cv;
+});
+
+console.log(total); // one number: the sum of the whole array
+
+// ---- case 2 : starting value given (the 2nd argument) ----
+
+// array we are working on: [888, 2, 4, 52, 43, 10000]
+//
+// Here we pass  marks[0]  as the starting value (after the `}`).
+//   - "largest" starts as marks[0] -> 888  (the value WE chose)
+//   - "cv"      starts as marks[0] -> 888  (the FIRST item, nothing skipped)
+
+// goal: find the largest number in the array
+var largest = marks.reduce((largest, cv) => {
+  if (cv > largest) {
+    // current item is bigger -> it becomes the new "largest"
+    // largest = cv
+    return cv;
+  } else {
+    // current item is not bigger -> keep the old "largest"
+    // largest = largest
+    return largest;
+  }
+}, marks[0]); // <-- this marks[0] is the starting value
+
+console.log(largest); // the largest number in the array
+
+// The same "find the largest" idea written with a plain loop,
+// just so you can see reduce is not magic:
+//
+// var largest = marks[0];
+
+// marks.forEach((m) => {
+//   if (m > largest) largest = m;
+// });
+
+// console.log(largest);
+
+// ---- findIndex : WHERE is the item? ---------------------
+
+// findIndex() walks the array and runs your test on each item.
+// The moment your test returns true, it STOPS and gives you the
+// POSITION (index) of that item. If nothing passes, you get -1.
+
+// return first occurance the item passing the given condition
+var i = marks.findIndex((m, i) => {
+  return m === 10000; // "is this item exactly 10000?"
+});
+console.log(i); // the index where 10000 sits (or -1 if not found)
+
+// Array(10).fill("_") makes ["_","_", ... ] ten underscores.
+// handy for things like a hangman board.
+// console.log(Array(10).fill("_"));
+
+// ---- flat : flatten a nested array --------------------
+
+// Sometimes an array has arrays inside it (a list of lists).
+var marks = [
+  [23, 34, 45],
+  [34, 67, 78],
+];
+
+// flat() pulls the inner items up one level, so you get a single
+// flat list instead of a list of lists.
+console.log(marks.flat()); // [23, 34, 45, 34, 67, 78]

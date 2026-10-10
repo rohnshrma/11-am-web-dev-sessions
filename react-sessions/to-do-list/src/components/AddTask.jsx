@@ -6,23 +6,12 @@ const AddTask = (props) => {
     description: "",
   });
 
-  const nameChangeHandler = (e) => {
-    const nameInput = e.target.value;
-
-    setFormData((prevFormData) => {
+  const changeHandler = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevDate) => {
       return {
-        name: nameInput,
-        description: prevFormData.description,
-      };
-    });
-  };
-  const descChangeHandler = (e) => {
-    const descInput = e.target.value;
-
-    setFormData((prevFormData) => {
-      return {
-        name: prevFormData.name,
-        description: descInput,
+        ...prevDate,
+        [name]: value,
       };
     });
   };
@@ -47,16 +36,18 @@ const AddTask = (props) => {
         <input
           placeholder="Task Name..."
           type="text"
+          name="name"
           value={formData.name}
-          onChange={nameChangeHandler}
+          onChange={changeHandler}
         />
       </div>
       <div>
         <input
           type="text"
+          name="description"
           placeholder="Task Description"
           value={formData.description}
-          onChange={descChangeHandler}
+          onChange={changeHandler}
         />
       </div>
       <button type="submit">Add Task</button>

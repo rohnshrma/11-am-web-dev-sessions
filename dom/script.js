@@ -41,3 +41,35 @@ var heading = document.getElementById("main");
 
 // const audio = new Audio("path");
 // audio.play();
+
+const name = document.querySelector("#name");
+const email = document.querySelector("#email");
+const nameError = document.querySelector("#nameError");
+const emailError = document.querySelector("#emailError");
+
+const form = document.querySelector("#myForm");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  nameError.innerText = "";
+  emailError.innerText = "";
+
+  if (name.value.trim() === "") {
+    nameError.innerText = "Name Cannot be Empty";
+    nameError.style.color = "red";
+    console.log("Please Fill name field");
+    return;
+  }
+  if (email.value.trim() === "") {
+    emailError.innerText = "Email Cannot be Empty";
+    emailError.style.color = "red";
+    console.log("Please Fill email field");
+    return;
+  }
+
+  console.log("Form Submitted");
+  console.log(name.value);
+  console.log(email.value);
+
+  form.reset();
+});

@@ -1,0 +1,437 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Archivo+Black&display=swap");
+
+/*
+  You don't need to touch this file to finish the assignment.
+  Just use the class names that are already in App.jsx.
+
+  Handy "state" classes you'll toggle from React:
+    .recipe-form.is-editing   -> form switches to edit colours
+    .recipe-card.is-editing   -> highlights the card being edited
+    .chip.active              -> the selected category filter
+*/
+
+:root {
+  --bg-light: #fff6ea;
+  --bg-dark: #f1dcc2;
+
+  --ink: #1d1712;
+  --muted: #6b5d50;
+
+  --neu-light: #ffffff;
+  --neu-dark: #e2cbb0;
+
+  --glass-bg: rgba(255, 255, 255, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.7);
+
+  --tomato: #ff6b4a;
+  --mustard: #ffc93c;
+  --mint: #7fd8b0;
+  --plum: #b48cff;
+
+  --radius: 20px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: radial-gradient(circle at 10% 15%, var(--mustard) 0%, transparent 32%),
+    radial-gradient(circle at 90% 20%, var(--mint) 0%, transparent 30%),
+    radial-gradient(circle at 75% 95%, var(--tomato) 0%, transparent 35%),
+    linear-gradient(150deg, var(--bg-light), var(--bg-dark));
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ---------- HEADER ---------- */
+
+.header {
+  align-self: center;
+  background: var(--tomato);
+  border: 4px solid var(--ink);
+  border-radius: 12px;
+  padding: 18px 36px;
+  text-align: center;
+  box-shadow: 8px 8px 0 var(--ink);
+  transform: rotate(-1.5deg);
+}
+
+.header h1 {
+  font-family: "Archivo Black", sans-serif;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 3px 3px 0 var(--ink);
+}
+
+.header p {
+  margin-top: 4px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* ---------- LAYOUT: form on the left, recipes on the right ---------- */
+
+.layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+/* ---------- SHARED GLASS PANEL ---------- */
+
+.recipe-form,
+.recipes-section,
+.empty-state {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: 0 8px 32px rgba(29, 23, 18, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* ---------- RECIPE FORM ---------- */
+
+.recipe-form {
+  position: sticky;
+  top: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: box-shadow 0.2s ease;
+}
+
+.recipe-form.is-editing {
+  box-shadow: 0 0 0 4px var(--plum), 0 8px 32px rgba(29, 23, 18, 0.2);
+}
+
+.form-title {
+  font-family: "Archivo Black", sans-serif;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+
+.recipe-form.is-editing .form-title {
+  color: #6a3fd1;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.field-row {
+  display: flex;
+  gap: 12px;
+}
+
+.field label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--muted);
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 12px 14px;
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--bg-light);
+  border-radius: 14px;
+  box-shadow: inset 4px 4px 9px var(--neu-dark), inset -4px -4px 9px var(--neu-light);
+  transition: box-shadow 0.2s ease;
+}
+
+.field textarea {
+  resize: vertical;
+  line-height: 1.4;
+}
+
+.field select {
+  cursor: pointer;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #a39383;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  box-shadow: inset 2px 2px 6px var(--neu-dark), inset -2px -2px 6px var(--neu-light),
+    0 0 0 3px rgba(255, 107, 74, 0.5);
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+/* ---------- BUTTONS ---------- */
+
+.btn {
+  font-family: "Archivo Black", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.85rem;
+  padding: 11px 20px;
+  color: var(--ink);
+  border: 3px solid var(--ink);
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.btn-primary {
+  background: var(--mustard);
+}
+
+.recipe-form.is-editing .btn-primary {
+  background: var(--plum);
+}
+
+.btn-ghost {
+  background: #fff;
+}
+
+.btn-edit {
+  background: var(--mint);
+  padding: 7px 14px;
+  font-size: 0.75rem;
+}
+
+.btn-delete {
+  background: var(--tomato);
+  color: #fff;
+  padding: 7px 14px;
+  font-size: 0.75rem;
+}
+
+/* ---------- RECIPES SECTION ---------- */
+
+.recipes-section {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.recipes-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.recipes-toolbar h2 {
+  font-family: "Archivo Black", sans-serif;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+
+.count {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: #fff;
+}
+
+/* ---------- FILTER CHIPS (bonus) ---------- */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--bg-light);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 3px 3px 7px var(--neu-dark), -3px -3px 7px var(--neu-light);
+  transition: box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.chip:hover {
+  box-shadow: 1px 1px 3px var(--neu-dark), -1px -1px 3px var(--neu-light);
+}
+
+.chip.active {
+  background: var(--ink);
+  color: #fff;
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+/* ---------- RECIPE CARDS ---------- */
+
+.recipes {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.recipe-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.65);
+  border: 3px solid var(--ink);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 6px 6px 0 var(--ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.recipe-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 var(--ink);
+}
+
+.recipe-card.is-editing {
+  background: #f1e9ff;
+  box-shadow: 6px 6px 0 var(--plum);
+}
+
+.recipe-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 4px 10px;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  background: var(--mustard);
+}
+
+.time {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.recipe-card h3 {
+  font-family: "Archivo Black", sans-serif;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.recipe-card .label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+.recipe-card p:not(.label) {
+  color: #3d342c;
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 6px;
+}
+
+/* ---------- EMPTY STATE ---------- */
+
+.empty-state {
+  text-align: center;
+  padding: 36px 24px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* ---------- SMALL SCREENS ---------- */
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .recipe-form {
+    position: static;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    transform: none;
+    padding: 16px 20px;
+  }
+
+  .field-row {
+    flex-direction: column;
+  }
+}

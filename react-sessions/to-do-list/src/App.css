@@ -52,8 +52,6 @@ body {
   gap: 28px;
 }
 
-/* ---------- HEADER: brutalism ---------- */
-
 .header {
   background: var(--accent-2);
   border: 4px solid var(--ink);
@@ -72,8 +70,6 @@ body {
   color: var(--ink);
   text-shadow: 3px 3px 0 #fff;
 }
-
-/* ---------- ADD TASK FORM: glassmorphism shell + neumorphic inputs ---------- */
 
 .add-task {
   background: var(--glass-bg);
@@ -137,8 +133,6 @@ body {
   box-shadow: 1px 1px 0 var(--ink);
 }
 
-/* ---------- EMPTY STATE ---------- */
-
 .app > h3 {
   text-align: center;
   padding: 24px;
@@ -151,8 +145,6 @@ body {
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 8px 32px rgba(20, 21, 26, 0.12);
 }
-
-/* ---------- TASKS LIST ---------- */
 
 .tasks {
   list-style: none;

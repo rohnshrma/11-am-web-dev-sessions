@@ -1,3 +1,4 @@
+// Simple component, only shows the title. No state, no props
 const Header = () => {
   return (
     <div className="header">

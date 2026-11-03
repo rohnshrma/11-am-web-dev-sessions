@@ -1,34 +1,22 @@
-import React, { useState } from "react";
-import Child from "./Child";
+import React, { useMemo, useState } from "react";
+// import Child from "./Child";
 
 const App = () => {
   console.log("app re rendered");
-  const [theme, setTheme] = useState("light");
+  // const [theme, setTheme] = useState("light");
   const [count, setCount] = useState(0);
+  const [number, setNumber] = useState(10);
 
-  const properties = {
-    backgroundColor: theme === "light" ? "#fff" : "#333",
-    color: theme === "light" ? "#333" : "#fff",
-  };
+  const result = useMemo(() => {
+    console.log("Calculation running");
+    return number * 100;
+  }, [number]);
 
   return (
     <div>
-      <Child name={"john doe"} count={count} />
-      <button
-        onClick={() => {
-          setTheme(theme === "light" ? "dark" : "light");
-        }}
-      >
-        {theme === "light" ? "dark" : "light"}
-      </button>
-
-      <button
-        onClick={() => {
-          setCount(count + 1);
-        }}
-      >
-        increase
-      </button>
+      <h2>Result : {result}</h2>
+      <button onClick={() => setCount(count + 1)}>Count : {count}</button>
+      <button onClick={() => setNumber(number + 1)}>Increase Number</button>
     </div>
   );
 };

@@ -9,9 +9,10 @@ You have done a similar thing before in `tdl-mern`. Same folder style, same way 
 ## What is inside this folder
 
 ```
-inventory-mern/
+inventory-management/
 ├── README.md        <- you are here
 ├── GUIDE.md         <- step by step implementation guide (read this next)
+├── assignment.md    <- the earlier Context-only version (no backend). Not needed for this one.
 ├── API.md           <- every endpoint, with sample request and response
 ├── backend/         <- DONE. Do not change it.
 │   ├── config/db.js
@@ -41,7 +42,7 @@ You need Node and MongoDB running on your machine (the same MongoDB you used for
 **Terminal 1: backend**
 
 ```bash
-cd inventory-mern/backend
+cd inventory-management/backend
 npm install
 npm run seed      # puts 8 sample products in the database (optional, but useful)
 npm run dev       # runs on http://localhost:5000
@@ -50,7 +51,7 @@ npm run dev       # runs on http://localhost:5000
 **Terminal 2: frontend**
 
 ```bash
-cd inventory-mern/frontend
+cd inventory-management/frontend
 npm install
 npm run dev       # Vite will show the link, usually http://localhost:5173
 ```

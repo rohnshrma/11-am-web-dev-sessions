@@ -338,7 +338,7 @@ Go through this checklist. Small things like these separate a project from an as
 
 1. The app runs with `npm run dev` for the frontend, with no errors in the console.
 2. Create a file `frontend/answers.md` and write the answers to the questions below, in your own words. A copied answer is easy to spot.
-3. Push your work inside the `inventory-mern/frontend` folder. Do not push `node_modules`.
+3. Push your work inside the `inventory-management/frontend` folder. Do not push `node_modules`.
 
 ### Questions (write in `answers.md`)
 

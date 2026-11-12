@@ -1,0 +1,300 @@
+/* Ready-made styles for the Inventory Manager.
+   You do not need to write CSS. Use these class names in your JSX.
+   Class names are listed in GUIDE.md, section "CSS class names". */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #f4f6fa;
+  color: #1f2937;
+}
+
+.container {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 24px 16px 60px;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 12px;
+}
+
+/* ---------- navbar ---------- */
+.navbar {
+  background: #1e293b;
+  color: #fff;
+}
+.navbar-inner {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar .brand {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+}
+.navbar .links {
+  display: flex;
+  gap: 18px;
+}
+.navbar .links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-weight: 500;
+}
+.navbar .links a.active {
+  color: #fff;
+  border-bottom: 2px solid #38bdf8;
+}
+
+/* ---------- summary cards (dashboard top) ---------- */
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.summary-card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 10px;
+  border-left: 5px solid #38bdf8;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.summary-card.warn {
+  border-left-color: #f59e0b;
+}
+.summary-card.danger {
+  border-left-color: #ef4444;
+}
+.summary-card .label {
+  font-size: 13px;
+  color: #6b7280;
+}
+.summary-card .value {
+  font-size: 26px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+/* ---------- search and filter bar ---------- */
+.toolbar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.toolbar input,
+.toolbar select {
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 15px;
+  background: #fff;
+}
+.toolbar input {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* ---------- product grid and card ---------- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 16px;
+}
+.product-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-top: 4px solid #22c55e;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.product-card.low {
+  border-top-color: #f59e0b;
+  background: #fffbeb;
+}
+.product-card.out {
+  border-top-color: #ef4444;
+  background: #fef2f2;
+}
+.product-card h3 {
+  margin: 0;
+}
+.product-card .meta {
+  color: #6b7280;
+  font-size: 14px;
+}
+.product-card .price {
+  font-size: 18px;
+  font-weight: 600;
+}
+.product-card .total {
+  font-size: 14px;
+  color: #374151;
+}
+.product-card .desc {
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #e0f2fe;
+  color: #0369a1;
+}
+.badge.low {
+  background: #fef3c7;
+  color: #92400e;
+}
+.badge.out {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* ---------- stock stepper (- qty +) ---------- */
+.stock {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0;
+}
+.stock .qty {
+  min-width: 36px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 18px;
+}
+.stock button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  background: #e2e8f0;
+  font-size: 18px;
+  cursor: pointer;
+}
+.stock button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ---------- buttons ---------- */
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+.btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #e2e8f0;
+  color: #1f2937;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn.primary {
+  background: #0ea5e9;
+  color: #fff;
+}
+.btn.danger {
+  background: #ef4444;
+  color: #fff;
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---------- form ---------- */
+.form {
+  background: #fff;
+  max-width: 520px;
+  padding: 22px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+}
+.form-group textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+.form-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* ---------- messages ---------- */
+.error {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  font-size: 14px;
+}
+.loading,
+.empty {
+  text-align: center;
+  color: #6b7280;
+  padding: 40px 0;
+}
+
+/* ---------- detail page ---------- */
+.detail {
+  background: #fff;
+  max-width: 560px;
+  padding: 22px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.detail p {
+  margin: 8px 0;
+}
+
+/* ---------- 404 ---------- */
+.not-found {
+  text-align: center;
+  padding: 60px 0;
+}

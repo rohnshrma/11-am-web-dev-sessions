@@ -6,6 +6,19 @@ This guide does not give you the full code. It tells you **what to build, in wha
 
 ---
 
+## The work in 4 parts
+
+The 14 steps below are grouped into 4 parts. Finish one part fully (including its checkpoints) before starting the next. If you are doing this over a few days, one part per day is a good pace.
+
+| Part | Steps | What you finish | Topics used |
+| --- | --- | --- | --- |
+| **Part 1: Foundation** | 1 to 3 | App runs, pages and navbar work, products load from the API into context | Router, Context, `useEffect`, axios |
+| **Part 2: Show and manage** | 4 to 7 | Products on screen with low stock colours, Delete and `+` / `-` working | Props, `map`, conditional rendering, axios `delete` and `patch` |
+| **Part 3: Forms and pages** | 8 to 11 | Add, summary cards, Edit and the detail page | `useReducer`, controlled inputs, `useParams`, `useNavigate`, `useMemo` |
+| **Part 4: Refine and submit** | 12 to 14 | Search and filter, optimization, polish, `answers.md` | `useMemo`, `React.memo`, `useCallback` |
+
+---
+
 ## Before you start: the plan in one picture
 
 ```
@@ -67,6 +80,12 @@ src/
 
 ---
 
+# PART 1: Foundation (Steps 1 to 3)
+
+**Goal:** by the end, the app has working pages and a navbar, and the products from the database are sitting in context.
+
+---
+
 ## Step 1: Setup and first look
 
 1. Start the backend (`npm run dev`) and the frontend (`npm run dev`).
@@ -114,6 +133,12 @@ This is the heart of the app. Go back to `tdl-mern/frontend/src/context/TaskCont
 > **Why `useEffect` and not just calling axios in the component body?** Think about what happens if you call `setProducts` during render. If you cannot answer this, open `react-intro` and read the `useEffect` notes again.
 
 **Checkpoint:** temporarily add `console.log(products)` in the provider. You should see the array with your seeded products. Stop the backend and reload: `error` should get a message instead of crashing the page.
+
+---
+
+# PART 2: Show and manage products (Steps 4 to 7)
+
+**Goal:** by the end, every product is on the screen, coloured by stock level, and you can delete it or change its stock.
 
 ---
 
@@ -178,6 +203,12 @@ where `status` is a variable you work out above the `return`. Work it out as a p
 4. If the server returns an error (it will, if you somehow go below 0), show it using the `error` state.
 
 **Checkpoint:** press `+` and `-`, the number changes, and the card colour changes at 5 and at 0 without any extra code from you. If that happens, you did Step 5 correctly.
+
+---
+
+# PART 3: Forms and pages (Steps 8 to 11)
+
+**Goal:** by the end, you can add and edit products, see the summary numbers, and open a detail page for any product.
 
 ---
 
@@ -278,6 +309,12 @@ Two pieces here: a page that gets the id from the URL, and the form filled with 
 5. The dependency array of your `useEffect` should contain `id`. Why? Try removing it and see what happens when you go from one product's page to another.
 
 **Checkpoint:** open `/products/abc` (invalid id). You should see a proper message, not a blank screen.
+
+---
+
+# PART 4: Refine and submit (Steps 12 to 14)
+
+**Goal:** by the end, the app has search and filter, avoids needless re-renders, handles errors properly, and is ready to submit.
 
 ---
 

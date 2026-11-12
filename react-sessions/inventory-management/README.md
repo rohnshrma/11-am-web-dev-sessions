@@ -100,6 +100,6 @@ Not needed and please do not use: Redux, any UI library (MUI, Bootstrap...), Typ
 
 ## Where to start
 
-Open [GUIDE.md](./GUIDE.md) and go step by step. Do not skip to the end. Each step builds on the one before it, and each has a small checkpoint so you know it is working before you move ahead.
+Open [GUIDE.md](./GUIDE.md). The work is split into 4 parts (Foundation, Show and manage, Forms and pages, Refine and submit). Go step by step. Do not skip to the end. Each step builds on the one before it, and each has a small checkpoint so you know it is working before you move ahead.
 
 All the best. Ask doubts in the class group, but try for at least 15 minutes yourself first, and bring the console error along when you ask.
